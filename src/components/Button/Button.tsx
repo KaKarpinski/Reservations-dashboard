@@ -1,16 +1,15 @@
 import "./Button.css"
 
-interface ButtonProps {
-  onClick: () => void;
+interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children: React.ReactNode;
 }
 
-const Button: React.FC<ButtonProps> = ({ onClick, children }) => {
+const Button: React.FC<ButtonProps> = ({ children, ...props }) => {
   return (
-    <button onClick={onClick} className="button">
+    <button className="button" {...props}>
       {children}
     </button>
-  )
-}
+  );
+};
 
 export default Button;

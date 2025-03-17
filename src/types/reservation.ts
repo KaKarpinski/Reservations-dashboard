@@ -28,3 +28,13 @@ export interface ReservationResponse {
   notes?: string;
   email?: string;
 }
+
+export const reservationStatuses: ReservationStatus[] = [
+  "Reserved",
+  "Due In",
+  "In House",
+  "Due Out",
+  "Checked Out",
+  "Canceled",
+  "No Show",
+];

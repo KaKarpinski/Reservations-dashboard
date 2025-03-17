@@ -1,0 +1,14 @@
+label {
+  font-weight: bold;
+  color: #333;
+  font-size: 14px;
+}
+
+.select-field input, select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+  transition: border-color 0.3s ease-in-out;
+}

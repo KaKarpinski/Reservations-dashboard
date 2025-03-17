@@ -1,5 +1,9 @@
 import React, { useMemo } from "react";
-import { Reservation, ReservationStatus } from "../../types/reservation";
+import {
+  Reservation,
+  ReservationStatus,
+  reservationStatuses,
+} from "../../types/reservation";
 import ReservationCard from "../../components/ReservationCard/ReservationCard";
 import "./ReservationBoard.css";
 import StatusColumn from "../../components/StatusColumn/StatusColumn";
@@ -13,15 +17,11 @@ const ReservationBoard: React.FC<ReservationBoardProps> = ({
   reservations,
 }) => {
   const groupedReservations = useMemo(() => {
-    const groups: Record<ReservationStatus, Reservation[]> = {
-      Reserved: [],
-      "Due In": [],
-      "In House": [],
-      "Due Out": [],
-      "Checked Out": [],
-      Canceled: [],
-      "No Show": [],
-    };
+    const groups: Record<ReservationStatus, Reservation[]> =
+      reservationStatuses.reduce((acc, status) => {
+        acc[status] = [];
+        return acc;
+      }, {} as Record<ReservationStatus, Reservation[]>);
 
     reservations.forEach((reservation) => {
       groups[reservation.status].push(reservation);

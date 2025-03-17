@@ -17,6 +17,13 @@ const ReservationCard: React.FC<ReservationCardProps> = ({
   const isEditingEnabled =
     reservation.status === "Reserved" || reservation.status === "Due In";
 
+  const handleRemove = async () => {
+    // TODO: This should also revalidate getReservations query
+    await fetch(`http://localhost:3000/reservations/${reservation.id}`, {
+      method: "DELETE",
+    });
+  };
+
   return (
     <div className="reservation-card">
       <div
@@ -34,7 +41,9 @@ const ReservationCard: React.FC<ReservationCardProps> = ({
             }
             options={[
               ...(isEditingEnabled ? [<Link to="edit">Edit</Link>] : []),
-              <button className="unstyled-button">Delete</button>,
+              <button onClick={handleRemove} className="unstyled-button">
+                Delete
+              </button>,
             ]}
           />
         </div>
