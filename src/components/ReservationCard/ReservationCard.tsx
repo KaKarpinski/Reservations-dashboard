@@ -2,6 +2,8 @@ import React from "react";
 import { Reservation } from "../../types/reservation";
 import { formatDate } from "../../utils/dateFormatters";
 import "./ReservationCard.css";
+import Dropdown from "../Dropdown/Dropdown";
+import { Link } from "react-router";
 
 interface ReservationCardProps {
   reservation: Reservation;
@@ -12,6 +14,9 @@ const ReservationCard: React.FC<ReservationCardProps> = ({
   reservation,
   statusColor,
 }) => {
+  const isEditingEnabled =
+    reservation.status === "Reserved" || reservation.status === "Due In";
+
   return (
     <div className="reservation-card">
       <div
@@ -21,9 +26,17 @@ const ReservationCard: React.FC<ReservationCardProps> = ({
       <div className="card-content">
         <div className="card-header">
           <h3 className="guest-name">{reservation.guestName}</h3>
-          <div className="action-button">
-            <button className="btn-action">⋮</button>
-          </div>
+          <Dropdown
+            icon={
+              <div className="action-button">
+                <button className="btn-action">⋮</button>
+              </div>
+            }
+            options={[
+              ...(isEditingEnabled ? [<Link to="edit">Edit</Link>] : []),
+              <button className="unstyled-button">Delete</button>,
+            ]}
+          />
         </div>
 
         <div className="stay-dates">

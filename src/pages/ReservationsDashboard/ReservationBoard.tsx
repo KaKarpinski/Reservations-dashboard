@@ -36,6 +36,7 @@ const ReservationBoard: React.FC<ReservationBoardProps> = ({
         <StatusColumn
           status={status as ReservationStatus}
           listLength={reservationList.length}
+          key={status}
         >
           {reservationList.map((reservation) => (
             <ReservationCard

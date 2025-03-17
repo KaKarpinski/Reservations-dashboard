@@ -1,15 +1,19 @@
 import React from 'react';
-import { NavLink } from "react-router";
-import './Header.css';
+import { Link } from "react-router";
+import "./Header.css";
+import Button from "../Button/Button";
 
 const Header: React.FC = () => {
   return (
     <header className="header">
       <div className="header-content">
         <div className="logo">
-          <NavLink to="/">
+          <Link to="/">
             <h1>Dashboard Rezerwacji Hotelowych</h1>
-          </NavLink>
+          </Link>
+          <Link to="/add">
+            <Button onClick={() => {}}>Dodaj rezerwację</Button>
+          </Link>
         </div>
         <div className="header-actions">
           <div className="date-display">
