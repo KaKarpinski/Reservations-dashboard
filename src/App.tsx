@@ -1,27 +1,29 @@
-import { useState, useEffect } from 'react'
-import './App.css'
-import ReservationBoard from './components/ReservationsDashboard/ReservationBoard'
-import Header from './components/Header/Header'
-import { Reservation } from './types/reservation'
-import reservationsData from './data/reservations.json'
-import { mapResponseObjectToReservation } from './utils/reservationUtils'
+import { useState, useEffect } from "react";
+import "./App.css";
+import ReservationBoard from "./pages/ReservationsDashboard/ReservationBoard";
+import Header from "./components/Header/Header";
+import { Reservation } from "./types/reservation";
+import reservationsData from "./data/reservations.json";
+import { mapResponseObjectToReservation } from "./utils/reservationUtils";
 
 function App() {
-  const [reservations, setReservations] = useState<Reservation[]>([])
-  const [loading, setLoading] = useState(true)
+  const [reservations, setReservations] = useState<Reservation[]>([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     setTimeout(() => {
       try {
-        const validReservations = reservationsData.map(mapResponseObjectToReservation);
+        const validReservations = reservationsData.map(
+          mapResponseObjectToReservation
+        );
         setReservations(validReservations);
       } catch (error) {
-        console.error('Błąd podczas przetwarzania danych rezerwacji:', error);
+        console.error("Błąd podczas przetwarzania danych rezerwacji:", error);
       } finally {
         setLoading(false);
       }
-    }, 800)
-  }, [])
+    }, 800);
+  }, []);
 
   return (
     <div className="app-container">
@@ -34,7 +36,7 @@ function App() {
         )}
       </main>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;

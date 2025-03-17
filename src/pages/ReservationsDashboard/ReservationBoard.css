@@ -1,0 +1,16 @@
+.reservation-board {
+  display: flex;
+  gap: 1rem;
+  padding: 1rem;
+  min-height: calc(100vh - 100px);
+  overflow: auto;
+}
+
+.empty-status {
+  padding: 1rem;
+  text-align: center;
+  color: #95a5a6;
+  font-style: italic;
+  background-color: #ecf0f1;
+  border-radius: 4px;
+} 
