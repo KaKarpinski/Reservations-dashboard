@@ -1,4 +1,5 @@
 import React from 'react';
+import { NavLink } from "react-router";
 import './Header.css';
 
 const Header: React.FC = () => {
@@ -6,15 +7,17 @@ const Header: React.FC = () => {
     <header className="header">
       <div className="header-content">
         <div className="logo">
-          <h1>Dashboard Rezerwacji Hotelowych</h1>
+          <NavLink to="/">
+            <h1>Dashboard Rezerwacji Hotelowych</h1>
+          </NavLink>
         </div>
         <div className="header-actions">
           <div className="date-display">
-            {new Date().toLocaleDateString('pl-PL', {
-              weekday: 'long',
-              year: 'numeric',
-              month: 'long',
-              day: 'numeric'
+            {new Date().toLocaleDateString("pl-PL", {
+              weekday: "long",
+              year: "numeric",
+              month: "long",
+              day: "numeric",
             })}
           </div>
         </div>

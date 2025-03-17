@@ -1,40 +1,23 @@
-import { useState, useEffect } from "react";
 import "./App.css";
-import ReservationBoard from "./pages/ReservationsDashboard/ReservationBoard";
 import Header from "./components/Header/Header";
-import { Reservation } from "./types/reservation";
-import reservationsData from "./data/reservations.json";
-import { mapResponseObjectToReservation } from "./utils/reservationUtils";
+import { BrowserRouter, Routes, Route } from "react-router";
+import ReservationBoardWrapper from "./pages/ReservationsDashboard/Wrapper";
+import AddReservation from "./pages/AddReservation/AddReservation";
+import EditReservation from "./pages/EditReservation/EditReservation";
 
 function App() {
-  const [reservations, setReservations] = useState<Reservation[]>([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    setTimeout(() => {
-      try {
-        const validReservations = reservationsData.reservations.map(
-          mapResponseObjectToReservation
-        );
-        setReservations(validReservations);
-      } catch (error) {
-        console.error("Błąd podczas przetwarzania danych rezerwacji:", error);
-      } finally {
-        setLoading(false);
-      }
-    }, 800);
-  }, []);
-
   return (
     <div className="app-container">
-      <Header />
-      <main className="main-content">
-        {loading ? (
-          <div className="loading">Ładowanie danych rezerwacji...</div>
-        ) : (
-          <ReservationBoard reservations={reservations} />
-        )}
-      </main>
+      <BrowserRouter>
+        <Header />
+        <main className="main-content">
+          <Routes>
+            <Route path="/" element={<ReservationBoardWrapper />} />
+            <Route path="/add" element={<AddReservation />} />
+            <Route path="/edit" element={<EditReservation />} />
+          </Routes>
+        </main>
+      </BrowserRouter>
     </div>
   );
 }
