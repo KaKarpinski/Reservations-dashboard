@@ -13,7 +13,7 @@ function App() {
   useEffect(() => {
     setTimeout(() => {
       try {
-        const validReservations = reservationsData.map(
+        const validReservations = reservationsData.reservations.map(
           mapResponseObjectToReservation
         );
         setReservations(validReservations);

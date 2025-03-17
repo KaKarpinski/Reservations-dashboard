@@ -19,6 +19,11 @@ npm install
 npm run dev
 ```
 
+4. Start json-server for hosting DB locally on port 3000:
+```bash
+npx json-server src/data/reservations.json
+```
+
 The application will be available at `http://localhost:5173`
 
 ## Available Scripts
