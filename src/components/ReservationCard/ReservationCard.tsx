@@ -22,10 +22,10 @@ const ReservationCard: React.FC<ReservationCardProps> = ({
   statusColor,
   setReservations,
 }) => {
+  const navigate = useNavigate();
   const { isOpen, open, close } = useModal();
   const isEditingEnabled =
     reservation.status === "Reserved" || reservation.status === "Due In";
-  const navigate = useNavigate();
   const availableStatuses = getAvailableStatuses(reservation.status);
   const statusChangeOptions = getStatusChangeOptions(
     availableStatuses,
@@ -61,7 +61,7 @@ const ReservationCard: React.FC<ReservationCardProps> = ({
                 ? [
                     {
                       text: "Edit",
-                      action: () => navigate("/edit"),
+                      action: () => navigate(`/edit/${reservation.id}`),
                     },
                   ]
                 : []),

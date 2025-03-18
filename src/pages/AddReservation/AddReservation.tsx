@@ -1,12 +1,13 @@
 import { useFormik } from "formik";
 import { Reservation } from "../../types/reservation";
-import { useValidationSchema } from "./validationSchema";
 import InputField from "../../components/InputField/InputField";
 import "./AddReservation.css";
 import Button from "../../components/Button/Button";
 import { useNavigate } from "react-router";
 import useAllReservations from "../../hooks/useAllReservations";
 import { getNewId } from "../../utils/getNewId";
+import { getValidationSchema } from "../../utils/reservationValidationSchema";
+import { LocationState } from "../../types/navigation";
 
 const isCheckInToday = (checkInDate: string) => {
   const today = new Date();
@@ -38,9 +39,13 @@ const AddReservation: React.FC = () => {
 
     const createdItem = await response.json();
 
+    const locationState: LocationState = {
+      newItem: createdItem,
+    };
+
     // 'Invalidate' query logic. This should be handled by React Query / SWR
     if (response.ok) {
-      navigate("/", { state: { newItem: createdItem } });
+      navigate("/", { state: locationState });
     }
   };
 
@@ -59,7 +64,7 @@ const AddReservation: React.FC = () => {
       email: "",
     },
     validateOnChange: true,
-    validationSchema: useValidationSchema(),
+    validationSchema: getValidationSchema(),
   });
 
   return (

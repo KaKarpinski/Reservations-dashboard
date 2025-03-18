@@ -1,7 +1,7 @@
 import * as Yup from 'yup';
-import { fieldRequired, maxLength, minLength, validEmail } from '../../utils/validationWarnings';
+import { fieldRequired, maxLength, minLength, validEmail } from './validationWarnings';
 
-export const useValidationSchema = () => {
+export const getValidationSchema = () => {
   return Yup.object({
     guestName: Yup.string().trim().required(fieldRequired).min(5, minLength).max(100, maxLength),
     checkInDate: Yup.string().trim().required(fieldRequired).max(100, maxLength),

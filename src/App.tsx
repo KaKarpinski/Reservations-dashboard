@@ -3,7 +3,7 @@ import Header from "./components/Header/Header";
 import { BrowserRouter, Routes, Route } from "react-router";
 import ReservationBoardWrapper from "./pages/ReservationsDashboard/ReservationBoardWrapper";
 import AddReservation from "./pages/AddReservation/AddReservation";
-import EditReservation from "./pages/EditReservation/EditReservation";
+import EditReservationWrapper from "./pages/EditReservation/EditReservationWrapper";
 
 function App() {
   return (
@@ -14,7 +14,7 @@ function App() {
           <Routes>
             <Route path="/" element={<ReservationBoardWrapper />} />
             <Route path="/add" element={<AddReservation />} />
-            <Route path="/edit" element={<EditReservation />} />
+            <Route path="/edit/:id" element={<EditReservationWrapper />} />
           </Routes>
         </main>
       </BrowserRouter>
