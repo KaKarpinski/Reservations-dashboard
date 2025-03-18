@@ -1,7 +1,7 @@
 import "./App.css";
 import Header from "./components/Header/Header";
 import { BrowserRouter, Routes, Route } from "react-router";
-import ReservationBoardWrapper from "./pages/ReservationsDashboard/Wrapper";
+import ReservationBoardWrapper from "./pages/ReservationsDashboard/ReservationBoardWrapper";
 import AddReservation from "./pages/AddReservation/AddReservation";
 import EditReservation from "./pages/EditReservation/EditReservation";
 

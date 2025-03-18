@@ -11,10 +11,12 @@ import { statusColors } from "../../utils/statusColors";
 
 interface ReservationBoardProps {
   reservations: Reservation[];
+  setReservations: React.Dispatch<React.SetStateAction<Reservation[]>>;
 }
 
 const ReservationBoard: React.FC<ReservationBoardProps> = ({
   reservations,
+  setReservations,
 }) => {
   const groupedReservations = useMemo(() => {
     const groups: Record<ReservationStatus, Reservation[]> =
@@ -43,6 +45,7 @@ const ReservationBoard: React.FC<ReservationBoardProps> = ({
               key={reservation.id}
               reservation={reservation}
               statusColor={statusColors[reservation.status]}
+              setReservations={setReservations}
             />
           ))}
           {reservationList.length === 0 && (

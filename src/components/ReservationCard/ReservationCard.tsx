@@ -3,25 +3,29 @@ import { Reservation } from "../../types/reservation";
 import { formatDate } from "../../utils/dateFormatters";
 import "./ReservationCard.css";
 import Dropdown from "../Dropdown/Dropdown";
-import { Link } from "react-router";
+import { useNavigate } from "react-router";
 
 interface ReservationCardProps {
   reservation: Reservation;
   statusColor: string;
+  setReservations: React.Dispatch<React.SetStateAction<Reservation[]>>;
 }
 
 const ReservationCard: React.FC<ReservationCardProps> = ({
   reservation,
   statusColor,
+  setReservations,
 }) => {
   const isEditingEnabled =
     reservation.status === "Reserved" || reservation.status === "Due In";
+  const navigate = useNavigate();
 
   const handleRemove = async () => {
-    // TODO: This should also revalidate getReservations query
     await fetch(`http://localhost:3000/reservations/${reservation.id}`, {
       method: "DELETE",
     });
+    // 'Invalidate' query logic. In real world app this should be handled by React Query / SWR
+    setReservations((prev) => prev.filter((res) => res.id !== reservation.id));
   };
 
   return (
@@ -40,10 +44,18 @@ const ReservationCard: React.FC<ReservationCardProps> = ({
               </div>
             }
             options={[
-              ...(isEditingEnabled ? [<Link to="edit">Edit</Link>] : []),
-              <button onClick={handleRemove} className="unstyled-button">
-                Delete
-              </button>,
+              ...(isEditingEnabled
+                ? [
+                    {
+                      text: "Edit",
+                      action: () => navigate("/edit"),
+                    },
+                  ]
+                : []),
+              {
+                text: "Delete",
+                action: handleRemove,
+              },
             ]}
           />
         </div>

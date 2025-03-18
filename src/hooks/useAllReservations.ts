@@ -20,7 +20,7 @@ const useAllReservations = () => {
       }
   }, []);
   
-  return { reservations, loading };
+  return { reservations, loading, setReservations };
 };
 
 export default useAllReservations;
