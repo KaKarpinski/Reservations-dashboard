@@ -4,6 +4,10 @@ import { formatDate } from "../../utils/dateFormatters";
 import "./ReservationCard.css";
 import Dropdown from "../Dropdown/Dropdown";
 import { useNavigate } from "react-router";
+import {
+  getAvailableStatuses,
+  getStatusChangeOptions,
+} from "../../utils/getAvailableStatusesChanges";
 
 interface ReservationCardProps {
   reservation: Reservation;
@@ -19,6 +23,12 @@ const ReservationCard: React.FC<ReservationCardProps> = ({
   const isEditingEnabled =
     reservation.status === "Reserved" || reservation.status === "Due In";
   const navigate = useNavigate();
+  const availableStatuses = getAvailableStatuses(reservation.status);
+  const statusChangeOptions = getStatusChangeOptions(
+    availableStatuses,
+    reservation.id,
+    setReservations
+  );
 
   const handleRemove = async () => {
     await fetch(`http://localhost:3000/reservations/${reservation.id}`, {
@@ -56,6 +66,7 @@ const ReservationCard: React.FC<ReservationCardProps> = ({
                 text: "Delete",
                 action: handleRemove,
               },
+              ...statusChangeOptions,
             ]}
           />
         </div>

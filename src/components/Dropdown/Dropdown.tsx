@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 import "./Dropdown.css";
 
-interface DropdownProps {
+export interface DropdownProps {
   icon: React.ReactNode;
   options: {
     text: string;
