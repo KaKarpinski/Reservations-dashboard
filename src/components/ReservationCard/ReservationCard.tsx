@@ -8,6 +8,8 @@ import {
   getAvailableStatuses,
   getStatusChangeOptions,
 } from "../../utils/getAvailableStatusesChanges";
+import Modal from "../Modal/Modal";
+import { useModal } from "../../hooks/useModal";
 
 interface ReservationCardProps {
   reservation: Reservation;
@@ -20,6 +22,7 @@ const ReservationCard: React.FC<ReservationCardProps> = ({
   statusColor,
   setReservations,
 }) => {
+  const { isOpen, open, close } = useModal();
   const isEditingEnabled =
     reservation.status === "Reserved" || reservation.status === "Due In";
   const navigate = useNavigate();
@@ -64,7 +67,7 @@ const ReservationCard: React.FC<ReservationCardProps> = ({
                 : []),
               {
                 text: "Delete",
-                action: handleRemove,
+                action: open,
               },
               ...statusChangeOptions,
             ]}
@@ -99,6 +102,7 @@ const ReservationCard: React.FC<ReservationCardProps> = ({
           </div>
         )}
       </div>
+      <Modal isOpen={isOpen} close={close} onConfirm={handleRemove} />
     </div>
   );
 };
