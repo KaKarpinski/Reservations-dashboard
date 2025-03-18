@@ -49,7 +49,7 @@ const AddReservation: React.FC = () => {
     }
   };
 
-  const { values, errors, isValid, ...formik } = useFormik<Reservation>({
+  const { values, errors, isValid, dirty, ...formik } = useFormik<Reservation>({
     onSubmit: () => {
       handleSubmit(values);
     },
@@ -113,7 +113,7 @@ const AddReservation: React.FC = () => {
         onChange={formik.handleChange}
         errorMessage={errors.email}
       />
-      <Button disabled={!isValid} type="submit">
+      <Button disabled={!dirty || !isValid} type="submit">
         Submit
       </Button>
     </form>
