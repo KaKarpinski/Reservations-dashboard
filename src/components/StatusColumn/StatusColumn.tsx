@@ -24,6 +24,8 @@ const StatusColumn: React.FC<StatusColumnProps> = ({
         <h2>{status}</h2>
         <span className="reservation-count">{listLength}</span>
       </div>
+      {/* For performance purposes this list should be implemented as eg. react-virtualized,
+      but unfortunately I've crashed into styling and it wasn't looking good so I've decided to leave this idea */}
       <div className="reservation-list">{children}</div>
     </div>
   );
