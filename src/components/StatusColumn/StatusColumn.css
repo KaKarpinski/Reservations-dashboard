@@ -6,7 +6,7 @@
   background-color: #f5f5f5;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
+  overflow: visible;
 }
 
 .status-header {
@@ -40,7 +40,7 @@
 .reservation-list {
   flex: 1;
   padding: 1rem;
-  overflow-y: auto;
+  overflow: visible;
   display: flex;
   flex-direction: column;
   gap: 1rem;
