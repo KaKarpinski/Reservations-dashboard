@@ -36,15 +36,15 @@ const Dropdown: React.FC<DropdownProps> = ({ icon, options }) => {
     <details className="dropdown" ref={detailsRef}>
       <summary className="dropdown-toggle">{icon}</summary>
       <ul className="dropdown-menu">
-        {options.map((e, idx) => (
+        {options.map((element, idx) => (
           <li
             onClick={() => {
-              e.action();
+              element.action();
               closeDropdown();
             }}
             key={idx}
           >
-            {e.text}
+            {element.text}
           </li>
         ))}
       </ul>
